@@ -1,9 +1,11 @@
 package DAO;
 
 
-import Bean.Nuomimovie;
+import Bean.*;;
 
 public interface NuoMiMovieDao{
 	public void save(Nuomimovie nuoMiMovie);
+	
+	public Nuomimovie findByMovieName(String movieName);
 
 }

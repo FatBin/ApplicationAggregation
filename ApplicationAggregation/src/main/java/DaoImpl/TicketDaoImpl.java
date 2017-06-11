@@ -1,5 +1,8 @@
 package DaoImpl;
 
+import java.util.List;
+
+import Bean.Jdticket;
 import Bean.Ticket;
 import DAO.BaseDao;
 import DAO.TicketDao;
@@ -12,5 +15,13 @@ public class TicketDaoImpl implements TicketDao {
     @Override
     public void save(Ticket ticket) {
         baseDao.persist(ticket);
+    }
+    
+    
+    @Override
+    public List<Ticket> find(String movieName, String theater, String date) {
+        String hql="from Ticket j where j.movieName='"+movieName+"' and j.theaterName='"+theater+"' and j.ticketStartDate like '%"+date+"%'";
+        List<Ticket> list=baseDao.findByHql(hql);
+        return list;
     }
 }
