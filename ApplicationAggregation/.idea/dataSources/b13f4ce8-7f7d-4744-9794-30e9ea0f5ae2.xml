@@ -139,137 +139,145 @@
     </column>
     <column id="52" parent="22" name="introduction">
       <Position>6</Position>
-      <DataType>varchar(225)|0</DataType>
+      <DataType>text|0</DataType>
     </column>
     <column id="53" parent="22" name="times">
       <Position>7</Position>
       <DataType>varchar(225)|0</DataType>
     </column>
-    <key id="54" parent="22" name="PRIMARY">
+    <column id="54" parent="22" name="actors">
+      <Position>8</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="55" parent="22" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>movieId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="55" parent="23" name="id">
+    <column id="56" parent="23" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="56" parent="23" name="movie">
+    <column id="57" parent="23" name="movie">
       <Position>2</Position>
       <DataType>varchar(225)|0</DataType>
     </column>
-    <column id="57" parent="23" name="movieId">
+    <column id="58" parent="23" name="movieId">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="58" parent="23" name="Theater">
+    <column id="59" parent="23" name="Theater">
       <Position>4</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="59" parent="23" name="TheaterId">
+    <column id="60" parent="23" name="TheaterId">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="60" parent="23" name="date">
+    <column id="61" parent="23" name="date">
       <Position>6</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="61" parent="23" name="begin">
+    <column id="62" parent="23" name="begin">
       <Position>7</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="62" parent="23" name="end">
+    <column id="63" parent="23" name="end">
       <Position>8</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="63" parent="23" name="language">
+    <column id="64" parent="23" name="language">
       <Position>9</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="64" parent="23" name="hall">
+    <column id="65" parent="23" name="hall">
       <Position>10</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="65" parent="23" name="price">
+    <column id="66" parent="23" name="price">
       <Position>11</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="66" parent="23" name="sponsor">
+    <column id="67" parent="23" name="sponsor">
       <Position>12</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <key id="67" parent="23" name="PRIMARY">
+    <key id="68" parent="23" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="68" parent="24" name="name">
+    <column id="69" parent="24" name="name">
       <Position>1</Position>
       <DataType>varchar(45)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="24" name="stars">
+    <column id="70" parent="24" name="stars">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="70" parent="24" name="intro">
+    <column id="71" parent="24" name="intro">
       <Position>3</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="71" parent="24" name="detailLink">
+    <column id="72" parent="24" name="detailLink">
       <Position>4</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="72" parent="24" name="director">
+    <column id="73" parent="24" name="director">
       <Position>5</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="73" parent="24" name="rank">
+    <column id="74" parent="24" name="rank">
       <Position>6</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="74" parent="24" name="country">
+    <column id="75" parent="24" name="country">
       <Position>7</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="75" parent="24" name="duration">
+    <column id="76" parent="24" name="duration">
       <Position>8</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="76" parent="24" name="startDate">
+    <column id="77" parent="24" name="startDate">
       <Position>9</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <key id="77" parent="24" name="PRIMARY">
+    <key id="78" parent="24" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>name</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="78" parent="25" name="id">
+    <column id="79" parent="25" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="79" parent="25" name="movieName">
+    <column id="80" parent="25" name="movieName">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="80" parent="25" name="theaterName">
+    <column id="81" parent="25" name="theaterName">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="81" parent="25" name="price">
+    <column id="82" parent="25" name="price">
       <Position>4</Position>
       <DataType>double|0</DataType>
     </column>
-    <column id="82" parent="25" name="address">
+    <column id="83" parent="25" name="address">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <key id="83" parent="25" name="PRIMARY">
+    <column id="84" parent="25" name="ticketStartDate">
+      <Position>6</Position>
+      <DataType>varchar(45)|0</DataType>
+    </column>
+    <key id="85" parent="25" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>

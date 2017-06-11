@@ -14,6 +14,9 @@ public class Jdonsale {
     private String tag;
     private String introduction;
     private String times;
+    private String actors;
+
+
 
     @Id
     @Column(name = "movieId")
@@ -85,6 +88,15 @@ public class Jdonsale {
         this.times = times;
     }
 
+    @Basic
+    @Column(name = "actors")
+    public String getActors() {
+        return actors;
+    }
+
+    public void setActors(String actors) {
+        this.actors = actors;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

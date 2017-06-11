@@ -1,5 +1,8 @@
 package lxbincrawler;
 
+import Bean.Jdonsale;
+import DAO.JDOnSaleDao;
+import DaoImpl.JDOnSaleDaoImpl;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
@@ -23,6 +26,7 @@ public class JDMovieCrawler {
     String[] cinema={"http://movie.jd.com/json/seat/seat_movieIssue.action?cityId=3201&movieId=","&day="};
     String[]  data={"https://movie.jd.com/json/seat/seat_buy.action?cityId=3201&movieId=","&day=","&cinemaId="};
     public ArrayList<JDTicket> process(){
+        JDOnSaleDao jdOnSaleDao=new JDOnSaleDaoImpl();
         JDMovieCrawler jd=new JDMovieCrawler();
         ArrayList<JDOnSale> arrayList=jd.getOnSaleFromHomepage();
         for (JDOnSale jdOnSale:arrayList
@@ -30,6 +34,7 @@ public class JDMovieCrawler {
             jd.getDetail(jdOnSale);
             System.out.println(jdOnSale.getMovieName()+" "+jdOnSale.getDirector()+" "+jdOnSale.getTimes().size());
         }
+
 
         ArrayList<JDTicket> result=new ArrayList<>();
         for(JDOnSale jdOnSale:arrayList){
