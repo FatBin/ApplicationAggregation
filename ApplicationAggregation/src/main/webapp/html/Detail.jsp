@@ -1,5 +1,9 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="XMLBean.All" %>
 <!-- Created by L.H.S on 2017/6/11. -->
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,8 +16,15 @@
 </head>
 <body>
 
+<%
+    ArrayList<All> alls = (ArrayList<All>)request.getSession().getAttribute("all");
+    for (All a : alls) {
+        System.out.println(a.getActors());
+    }
+%>
+
 <div class="top_div">
-    <span onclick="location.href='HomePage.html'"><i class="glyphicon glyphicon-home"></i>京扒网站</span>
+    <span onclick="location.href='HomePage.jsp'"><i class="glyphicon glyphicon-home"></i>京扒网站</span>
 </div>
 
 <div class="top_search_div">
@@ -35,7 +46,7 @@
     </div>
 
     <div class="inlineBlock">
-        <button type="button" class="btn btn-primary" style="width: 150px;">立即搜索</button>
+        <button type="button" class="btn btn-primary" style="width: 150px;" onclick="search()">立即搜索</button>
     </div>
 </div>
 
@@ -92,30 +103,30 @@
         <div class="result_div">
             <table class="table table-hover">
                 <thead>
-                    <!-- 影院名称和地址 -->
-                    <td>电影院</td>
-                    <td>日期</td>
-                    <!-- 开始时间和结束时间 -->
-                    <td>放映时间</td>
-                    <td>语言版本</td>
-                    <td>放映厅</td>
-                    <td>票价</td>
-                    <td>供应商</td>
+                <!-- 影院名称和地址 -->
+                <td>电影院</td>
+                <td>日期</td>
+                <!-- 开始时间和结束时间 -->
+                <td>放映时间</td>
+                <td>语言版本</td>
+                <td>放映厅</td>
+                <td>票价</td>
+                <td>供应商</td>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td style="line-height: 65px;">南京达美国际影城</td>
-                        <td style="line-height: 65px;">2017-06-12</td>
-                        <td style="padding-top: 10px;">
-                            <span style="font-size: 24px;">20:45</span>
-                            <div class="tip_div">约<span>22:31</span>散场</div>
-                        </td>
-                        <td style="line-height: 65px;">英语</td>
-                        <td style="line-height: 65px;">1号厅</td>
-                        <td class="price_td" style="line-height: 65px;">49.0</td>
-                        <td style="line-height: 65px;">淘票票</td>
-                    </tr>
+                <tr>
+                    <td style="line-height: 65px;">南京达美国际影城</td>
+                    <td style="line-height: 65px;">2017-06-12</td>
+                    <td style="padding-top: 10px;">
+                        <span style="font-size: 24px;">20:45</span>
+                        <div class="tip_div">约<span>22:31</span>散场</div>
+                    </td>
+                    <td style="line-height: 65px;">英语</td>
+                    <td style="line-height: 65px;">1号厅</td>
+                    <td class="price_td" style="line-height: 65px;">49.0</td>
+                    <td style="line-height: 65px;">淘票票</td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -127,6 +138,7 @@
 <script src="../js/jquery-3.2.1.min.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/bootstrap-datetimepicker.min.js"></script>
+<script src="../js/search.js"></script>
 <script>
     $('#datetime').datetimepicker({
         format: 'yyyy-mm-dd',
