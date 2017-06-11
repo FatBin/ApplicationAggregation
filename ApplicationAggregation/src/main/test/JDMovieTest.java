@@ -1,3 +1,5 @@
+import DAO.JDOnSaleDao;
+import DaoImpl.JDOnSaleDaoImpl;
 import lxbincrawler.JDMovieCrawler;
 import org.junit.Test;
 
@@ -10,5 +12,7 @@ public class JDMovieTest {
     @Test
     public void GetOnSaleFromHomepage(){
 //        jdMovieCrawler.GetOnSaleFromHomepage();
+
+//        JDOnSaleDao jdOnSaleDao=
     }
 }

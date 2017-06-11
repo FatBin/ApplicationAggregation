@@ -1,5 +1,7 @@
 package DaoImpl;
 
+import Bean.Ticket;
+import DAO.TicketDao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -7,11 +9,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import dao.TicketDao;
-import model.Ticket;
 
 
-public class TicketDaoImpl implements TicketDao{
+public class TicketDaoImpl implements TicketDao {
 
 	private Configuration config;
 	private ServiceRegistry serviceRegistry;
