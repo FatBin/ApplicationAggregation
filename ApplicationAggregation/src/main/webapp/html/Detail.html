@@ -1,0 +1,140 @@
+<!-- Created by L.H.S on 2017/6/11. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+
+    <link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../css/homepage.css">
+</head>
+<body>
+
+<div class="top_div">
+    <span onclick="location.href='HomePage.html'"><i class="glyphicon glyphicon-home"></i>京扒网站</span>
+</div>
+
+<div class="top_search_div">
+
+    <div class="inlineBlock">
+        <img src="../img/logo.png" style="width: 150px;">
+    </div>
+
+    <div class="inlineBlock">
+        <input type="text" class="form-control" placeholder="请输入电影名称">
+    </div>
+
+    <div class="inlineBlock">
+        <input type="text" class="form-control" placeholder="请输入电影院名称">
+    </div>
+
+    <div class="inlineBlock">
+        <input id="datetime" type="text" class="form-control" placeholder="请选择日期" readonly>
+    </div>
+
+    <div class="inlineBlock">
+        <button type="button" class="btn btn-primary" style="width: 150px;">立即搜索</button>
+    </div>
+</div>
+
+<div class="splice_div">
+    <div class="top_search_div"><i class="glyphicon glyphicon-triangle-right"></i> 电影详情</div>
+</div>
+
+<div class="movie_info">
+    <div class="top_search_div">
+
+        <div class="movie_name">
+            <span>新木乃伊</span>
+            <span class="grade">暂无评分</span>
+
+            <span class="country_div">美国</span>
+        </div>
+
+        <hr style="border-color: #3b4967;">
+
+        <div>
+
+            <div class="movie_photo">
+                <img src="../img/movie_photo.jpg">
+            </div>
+
+            <div class="detail_div">
+
+                <div>导演：<span>艾里克斯·库兹曼</span></div>
+
+                <div>主演：<span>汤姆·克鲁斯、索菲亚·波多...</span></div>
+
+                <div>动作 | 奇幻 | 冒险 | 106分钟 | 2017-06-09上映</div>
+
+                <div>剧情介绍：
+                    <span>
+                        二千年前，埃及公主安玛奈特（索菲亚·波多拉饰）遭到了父亲的谋害而死，并被埋葬于沙漠深处的坟墓中。
+                        两千年后的现代，一支由尼克（汤姆·克鲁斯）为首的海豹突击队在中东的沙漠中寻获了公主的古老棺木，
+                        但却因此唤醒了可怕的远古诅咒。复活于现代的安玛奈特因曾遭到极……
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="content_div">
+
+    <div class="top_search_div">
+
+        <div class="top_search_div title_bar">搜索结果</div>
+
+        <div class="result_div">
+            <table class="table table-hover">
+                <thead>
+                    <!-- 影院名称和地址 -->
+                    <td>电影院</td>
+                    <td>日期</td>
+                    <!-- 开始时间和结束时间 -->
+                    <td>放映时间</td>
+                    <td>语言版本</td>
+                    <td>放映厅</td>
+                    <td>票价</td>
+                    <td>供应商</td>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td style="line-height: 65px;">南京达美国际影城</td>
+                        <td style="line-height: 65px;">2017-06-12</td>
+                        <td style="padding-top: 10px;">
+                            <span style="font-size: 24px;">20:45</span>
+                            <div class="tip_div">约<span>22:31</span>散场</div>
+                        </td>
+                        <td style="line-height: 65px;">英语</td>
+                        <td style="line-height: 65px;">1号厅</td>
+                        <td class="price_td" style="line-height: 65px;">49.0</td>
+                        <td style="line-height: 65px;">淘票票</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+<script>
+    $('#datetime').datetimepicker({
+        format: 'yyyy-mm-dd',
+        todayBtn: true,
+        todayHighlight: true,
+        autoclose: true,
+        minView: "month"
+    });
+</script>
+</body>
+</html>
