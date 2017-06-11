@@ -1,12 +1,16 @@
 package pylcrawler;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.xerces.impl.xpath.regex.Match;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -15,6 +19,7 @@ import org.jsoup.select.Elements;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomElement;
+import com.gargoylesoftware.htmlunit.html.DomNode;
 import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -244,7 +249,7 @@ public class NuoMiMovieGetter {
 		
 		
 		for (NuoMiMovie nuoMiMovie : movies) {
-			ArrayList<Ticket> tickets=new ArrayList<>();
+			ArrayList<NuoMiTicket> tickets=new ArrayList<>();
 			
 			System.out.println("getting   "+nuoMiMovie.getName());
 			
@@ -281,9 +286,13 @@ public class NuoMiMovieGetter {
 			for(int i=0;i<listitems.getLength();i++ ){
 				
 				
-				Ticket ticket=parseTicketli(listitems.get(i));
+				ArrayList<NuoMiTicket> ticket=parseTicketli(listitems.get(i));
 				
-				tickets.add(ticket);
+				for (NuoMiTicket nuoMiTicket : ticket) {
+					tickets.add(nuoMiTicket);
+				}
+				
+				
 			}
 			
 			nuoMiMovie.setTicketlist(tickets);
@@ -305,35 +314,187 @@ public class NuoMiMovieGetter {
 		return movies;
 	}
 	
-	private Ticket parseTicketli(HtmlElement liELE){
+	public ArrayList<NuoMiTicket> parseTicketli(HtmlElement liELE){
 		
-		Ticket ticket=new Ticket();
+		ArrayList<NuoMiTicket> tickets=new ArrayList<>();
+		
+		NuoMiTicket ticket=new NuoMiTicket();
 		
 		String doc=liELE.asText();
 		
 		String[] reStrings=doc.split("\n");
 		
-		ticket.setTheaterName(reStrings[0]);
+//		ticket.setTheaterName(reStrings[0]);
 		
-		ticket.setAddress(reStrings[1]);
+		String theaterName=reStrings[0];
 		
-		String priceTag=reStrings[reStrings.length-1];
+		String address=reStrings[1];
 		
-		priceTag=priceTag.replaceAll("￥", "");
-		priceTag=priceTag.replaceAll("起", "");
-		try {
-		double price=Double.parseDouble(priceTag);
+		System.out.println(theaterName);
+
 		
-		ticket.setPrice(price);
-		}catch (Exception e) {
-			System.out.println("This cinema has no price,thus,set to 0");
-			System.out.println(doc);
-			ticket.setPrice(0);
+		HtmlElement atag=liELE.getElementsByTagName("a").get(0);
+		
+		String datadata=atag.getAttribute("data-data");
+		
+		String[] reString=datadata.split(",\"");
+		
+		String cinemaId=reString[0].replaceAll("\\{\"cinemaId\":", "");
+		
+		String movieId=reString[1].replaceAll("movieId\":", "");
+		
+		String date=reString[2].replaceAll("date\":", "");
+		
+		date=date.replaceAll("\\}", "");
+		
+		
+		
+//		String ticketlink="https://dianying.nuomi.com/cinema/cinemadetail?cityId=315&cinemaId="
+//				+ cinemaId+"&movieId="
+//						+ movieId+"&date="+date;
+		
+		String ticketlink="https://mdianying.baidu.com/cinema/detail?cinemaId="+cinemaId+"#showing";
+
+		System.out.println(ticketlink);
+		
+				
+		ArrayList<NuoMiTicket> thirdlayerTickets=thirdLayer(theaterName, address, ticketlink,movieId);
+		
+		for (NuoMiTicket nuoMiTicket : thirdlayerTickets) {
+			tickets.add(nuoMiTicket);
 		}
 		
-		return ticket;
+		
+		return tickets;
 	}
 	
+	
+	
+	
+	public ArrayList<NuoMiTicket> thirdLayer(String theaterName,String address, String link,String movieId){
+		WebClient webclient=new WebClient();
+		HtmlPage page;
+		ArrayList<NuoMiTicket> ticketlist=new ArrayList<>();
+		
+		try {
+			
+		page = webclient.getPage(link);
+		webclient.waitForBackgroundJavaScript(5000);
+		
+		List<HtmlElement> list=page.getByXPath("//div[@class='mod m-schedules']");
+		
+//		List<HtmlElement> list=page.getByXPath("//div[contains(@class,'movie-15546')]");
+		
+		
+		System.out.println(list.size());
+		
+		HtmlElement schedulelist=list.get(0);
+		
+		String doc=schedulelist.asXml();
+		
+	
+		
+		String regx="<div class=\"schedule(.*?)date-(.*?) movie-"+movieId+"\">";
+		
+		Pattern pattern=Pattern.compile(regx);
+		
+		Matcher matcher=pattern.matcher(doc);
+		
+		
+		ArrayList<Long> avaliableTime=new ArrayList<>();
+		while(matcher.find()){
+			
+			String date=matcher.group(0).replaceAll("<div class=\"schedule(.*?)date-", "");
+			date=date.replaceAll(" movie-"+movieId+"\">", "");
+			Long ldate=Long.parseLong(date);
+			avaliableTime.add(ldate);
+//			System.out.println(matcher.group(0));
+		}
+		
+		for (Long long1 : avaliableTime) {
+			Date date = new Date(long1);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String moviedate=sdf.format(date);
+			
+			System.out.println(moviedate);
+			
+			
+			List<HtmlElement> items=page.getByXPath("//div[@class='schedule  date-"+long1+" movie-"+movieId+"']");
+			
+			if(items.size()==0){
+				System.out.println("no data ?"+link+"movieid"+movieId);
+				
+				System.out.println(page.asXml());
+				
+				System.out.println("//div[@class='schedule  date-"+long1+" movie-"+movieId+"']");
+				                                 
+				continue;
+			}else{
+				String realdoc=items.get(0).asXml();
+				String startRegx="<div class=\"start\">(.*?)</div>";
+				String priceRegx="</i>(.*?)</div>";
+				
+				realdoc=realdoc.replaceAll("\t|\r|\n","");
+				
+				
+				
+				Pattern startpattern=Pattern.compile(startRegx,Pattern.DOTALL);
+				
+				Pattern pricepattern=Pattern.compile(priceRegx,Pattern.DOTALL);
+				
+				
+				Matcher startmatcher=startpattern.matcher(realdoc);
+				Matcher pricematcher=pricepattern.matcher(realdoc);
+				
+				while(startmatcher.find()&&pricematcher.find()){
+					
+					String rawDate=startmatcher.group(0);
+					String rawPrice=pricematcher.group(0);
+					
+					
+					rawPrice=rawPrice.replaceAll("\\s*|\t|\r|\n","");
+					rawDate=rawDate.replaceAll("<div class=\"start\">", "");
+					rawDate=rawDate.replaceAll("</div>", "");
+					rawDate=rawDate.replaceAll(" ", "");
+					
+					rawPrice=rawPrice.replaceAll("\\s*|\t|\r|\n","");
+					rawPrice=rawPrice.replaceAll("</i>", "");
+					rawPrice=rawPrice.replaceAll("</div>", "");
+					rawPrice=rawPrice.replaceAll(" ", "");
+					
+					NuoMiTicket ticket=new NuoMiTicket();	
+					ticket.setTheaterName(theaterName);
+					ticket.setAddress(address);
+					ticket.setStartDate(rawDate);
+					
+					
+					if(rawPrice.contains("<s>")){
+						rawPrice=rawPrice.replaceAll("<s>.*?</s>", "");
+					}
+					
+					if(rawPrice.contains("<span")){
+						rawPrice="100";
+					}
+						
+					
+					double price=Double.parseDouble(rawPrice);
+					ticket.setPrice(price);
+					
+					ticketlist.add(ticket);
+				
+				}
+			
+			}
+			
+		}
+		
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return ticketlist;
+	}
 	
 	
 	private  ArrayList<NuoMiMovieComingSoon> getMovieLinkFromNuoMiComingSoon(Element httpelement) {

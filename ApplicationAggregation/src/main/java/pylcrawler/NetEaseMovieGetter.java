@@ -30,11 +30,13 @@ public class NetEaseMovieGetter {
 		try {
 		
 		for (String string : linklist) {
+			NetEaseMovie movie=new NetEaseMovie();
 			page = webclient.getPage(string);
 			webclient.waitForBackgroundJavaScript(50000);
 			
 			List<HtmlElement> nodes=page.getByXPath("//span[@class='mv_name']");
 			
+			movie.setName(nodes.get(0).asText());
 			System.out.println(nodes.get(0).asText());
 			
 			

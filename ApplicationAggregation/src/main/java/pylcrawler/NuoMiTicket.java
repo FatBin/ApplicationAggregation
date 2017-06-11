@@ -6,13 +6,20 @@ package pylcrawler;
  */
 
 
-public class Ticket {
+public class NuoMiTicket {
 	private String theaterName;
 	private double price;
 	private String address;
+	private String startDate;
 	
 	
-	
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
 	public String getTheaterName() {
 		return theaterName;
 	}
@@ -37,6 +44,8 @@ public class Ticket {
 		String reString="name: "+theaterName+"\n"
 				+"address:"+address+"\n"
 				+"price:"+price+"\n"
+				+"startDate:"+startDate+"\n"
+				
 				+"--------------------------";
 		
 		return reString;

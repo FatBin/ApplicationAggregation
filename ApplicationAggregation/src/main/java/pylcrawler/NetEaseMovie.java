@@ -11,16 +11,16 @@ public class NetEaseMovie {
 	private String startDate; // 上映时间
 	
 	
-	private ArrayList<Ticket> ticketlist; 
+	private ArrayList<NuoMiTicket> ticketlist; 
 	
 	
 	
 	
 	
-	public ArrayList<Ticket> getTicketlist() {
+	public ArrayList<NuoMiTicket> getTicketlist() {
 		return ticketlist;
 	}
-	public void setTicketlist(ArrayList<Ticket> ticketlist) {
+	public void setTicketlist(ArrayList<NuoMiTicket> ticketlist) {
 		this.ticketlist = ticketlist;
 	}
 	public String getName() {
