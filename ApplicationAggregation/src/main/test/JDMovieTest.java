@@ -4,6 +4,7 @@ import DAO.JDOnSaleDao;
 import DAO.JDTicketDao;
 import DaoImpl.JDOnSaleDaoImpl;
 import DaoImpl.JDTicketDaoImpl;
+import Wrapper.JDXML;
 import XMLBean.JD;
 import XMLParse.XMLParse;
 import lxbincrawler.JDMovieCrawler;
@@ -56,10 +57,11 @@ public class JDMovieTest {
 //            System.out.println(j.getMovieId()+" "+j.getHall()+" "+j.getBegin());
 //        }
 
-        JDOnSaleDaoImpl j=new JDOnSaleDaoImpl();
-        Jdonsale jdonsale=j.findByMovieName("中国推销员");
-        System.out.println(jdonsale.getActors());
-
+//        JDOnSaleDaoImpl j=new JDOnSaleDaoImpl();
+//        Jdonsale jdonsale=j.findByMovieName("中国推销员");
+//        System.out.println(jdonsale.getActors());
+        JDXML jdxml=new JDXML();
+        jdxml.getData("神农溪之恋漂洋过海来爱你","南京沃美影城","2017-06-13");
 
     }
 
