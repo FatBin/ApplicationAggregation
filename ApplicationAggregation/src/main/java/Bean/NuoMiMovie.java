@@ -18,7 +18,6 @@ public class Nuomimovie {
     private String startDate;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "name")
     public String getName() {
         return name;
