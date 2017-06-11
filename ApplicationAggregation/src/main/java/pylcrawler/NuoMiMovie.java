@@ -13,7 +13,7 @@ public class NuoMiMovie {
 	private String duration; // 时长
 	private String startDate; // 上映时间
 	
-	private ArrayList<Ticket> ticketlist; 
+	private ArrayList<NuoMiTicket> ticketlist; 
 	
 
 	
@@ -75,10 +75,10 @@ public class NuoMiMovie {
 		this.intro = intro;
 	}
 	
-	public ArrayList<Ticket> getTicketlist() {
+	public ArrayList<NuoMiTicket> getTicketlist() {
 		return ticketlist;
 	}
-	public void setTicketlist(ArrayList<Ticket> ticketlist) {
+	public void setTicketlist(ArrayList<NuoMiTicket> ticketlist) {
 		this.ticketlist = ticketlist;
 	}
 	@Override
