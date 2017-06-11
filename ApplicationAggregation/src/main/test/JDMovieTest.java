@@ -1,3 +1,4 @@
+import Bean.Jdonsale;
 import DAO.JDOnSaleDao;
 import DaoImpl.JDOnSaleDaoImpl;
 import lxbincrawler.JDMovieCrawler;
@@ -11,8 +12,10 @@ public class JDMovieTest {
 
     @Test
     public void GetOnSaleFromHomepage(){
-//        jdMovieCrawler.GetOnSaleFromHomepage();
-
-//        JDOnSaleDao jdOnSaleDao=
+        JDOnSaleDao jdOnSaleDao=new JDOnSaleDaoImpl();
+        Jdonsale jdonsale=new Jdonsale();
+        jdonsale.setMovieId("110");
+        jdonsale.setDirector("123");
+        jdOnSaleDao.save(jdonsale);
     }
 }

@@ -1,9 +1,9 @@
 package DAO;
 
 
-import Bean.JDTicket;
+import Bean.Jdticket;
 
 public interface JDTicketDao{
 
-	public void save(JDTicket jDTicket);
+	public void save(Jdticket jDTicket);
 }

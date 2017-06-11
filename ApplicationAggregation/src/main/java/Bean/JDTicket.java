@@ -1,24 +1,17 @@
 package Bean;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
 /**
  * Created by mm on 2017/6/11.
  */
-
 @Entity
-@Table(name="JDTicket")
-public class JDTicket {
-	@Id
-	private int id;
+public class Jdticket {
+    private int id;
     private String movie;
     private String movieId;
-    private String Theater;
-    private int TheaterId;
+    private String theater;
+    private Integer theaterId;
     private String date;
     private String begin;
     private String end;
@@ -27,17 +20,20 @@ public class JDTicket {
     private String price;
     private String sponsor;
 
-    
-    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public int getId() {
-		return id;
-	}
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getMovie() {
+    @Basic
+    @Column(name = "movie")
+    public String getMovie() {
         return movie;
     }
 
@@ -45,7 +41,8 @@ public class JDTicket {
         this.movie = movie;
     }
 
-    
+    @Basic
+    @Column(name = "movieId")
     public String getMovieId() {
         return movieId;
     }
@@ -54,25 +51,28 @@ public class JDTicket {
         this.movieId = movieId;
     }
 
-    
+    @Basic
+    @Column(name = "Theater")
     public String getTheater() {
-        return Theater;
+        return theater;
     }
 
     public void setTheater(String theater) {
-        Theater = theater;
+        this.theater = theater;
     }
 
-    
-    public int getTheaterId() {
-        return TheaterId;
+    @Basic
+    @Column(name = "TheaterId")
+    public Integer getTheaterId() {
+        return theaterId;
     }
 
-    public void setTheaterId(int theaterId) {
-        TheaterId = theaterId;
+    public void setTheaterId(Integer theaterId) {
+        this.theaterId = theaterId;
     }
 
-    
+    @Basic
+    @Column(name = "date")
     public String getDate() {
         return date;
     }
@@ -81,7 +81,8 @@ public class JDTicket {
         this.date = date;
     }
 
-    
+    @Basic
+    @Column(name = "begin")
     public String getBegin() {
         return begin;
     }
@@ -90,7 +91,8 @@ public class JDTicket {
         this.begin = begin;
     }
 
-    
+    @Basic
+    @Column(name = "end")
     public String getEnd() {
         return end;
     }
@@ -99,7 +101,8 @@ public class JDTicket {
         this.end = end;
     }
 
-    
+    @Basic
+    @Column(name = "language")
     public String getLanguage() {
         return language;
     }
@@ -108,7 +111,8 @@ public class JDTicket {
         this.language = language;
     }
 
-    
+    @Basic
+    @Column(name = "hall")
     public String getHall() {
         return hall;
     }
@@ -117,7 +121,8 @@ public class JDTicket {
         this.hall = hall;
     }
 
-    
+    @Basic
+    @Column(name = "price")
     public String getPrice() {
         return price;
     }
@@ -126,12 +131,53 @@ public class JDTicket {
         this.price = price;
     }
 
-    
+    @Basic
+    @Column(name = "sponsor")
     public String getSponsor() {
         return sponsor;
     }
 
     public void setSponsor(String sponsor) {
         this.sponsor = sponsor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Jdticket jdticket = (Jdticket) o;
+
+        if (id != jdticket.id) return false;
+        if (movie != null ? !movie.equals(jdticket.movie) : jdticket.movie != null) return false;
+        if (movieId != null ? !movieId.equals(jdticket.movieId) : jdticket.movieId != null) return false;
+        if (theater != null ? !theater.equals(jdticket.theater) : jdticket.theater != null) return false;
+        if (theaterId != null ? !theaterId.equals(jdticket.theaterId) : jdticket.theaterId != null) return false;
+        if (date != null ? !date.equals(jdticket.date) : jdticket.date != null) return false;
+        if (begin != null ? !begin.equals(jdticket.begin) : jdticket.begin != null) return false;
+        if (end != null ? !end.equals(jdticket.end) : jdticket.end != null) return false;
+        if (language != null ? !language.equals(jdticket.language) : jdticket.language != null) return false;
+        if (hall != null ? !hall.equals(jdticket.hall) : jdticket.hall != null) return false;
+        if (price != null ? !price.equals(jdticket.price) : jdticket.price != null) return false;
+        if (sponsor != null ? !sponsor.equals(jdticket.sponsor) : jdticket.sponsor != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (movie != null ? movie.hashCode() : 0);
+        result = 31 * result + (movieId != null ? movieId.hashCode() : 0);
+        result = 31 * result + (theater != null ? theater.hashCode() : 0);
+        result = 31 * result + (theaterId != null ? theaterId.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (begin != null ? begin.hashCode() : 0);
+        result = 31 * result + (end != null ? end.hashCode() : 0);
+        result = 31 * result + (language != null ? language.hashCode() : 0);
+        result = 31 * result + (hall != null ? hall.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (sponsor != null ? sponsor.hashCode() : 0);
+        return result;
     }
 }

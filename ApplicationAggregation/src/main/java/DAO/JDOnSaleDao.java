@@ -1,9 +1,9 @@
 package DAO;
 
 
-import Bean.JDOnSale;
+import Bean.Jdonsale;
 
 public interface JDOnSaleDao{
 
-	public void save(JDOnSale jDOnSale);
+	public void save(Jdonsale jDOnSale);
 }

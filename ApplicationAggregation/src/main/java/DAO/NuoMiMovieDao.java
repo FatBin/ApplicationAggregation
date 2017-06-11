@@ -1,9 +1,9 @@
 package DAO;
 
 
-import Bean.NuoMiMovie;
+import Bean.Nuomimovie;
 
 public interface NuoMiMovieDao{
-	public void save(NuoMiMovie nuoMiMovie);
+	public void save(Nuomimovie nuoMiMovie);
 
 }

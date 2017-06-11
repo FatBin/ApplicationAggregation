@@ -1,35 +1,22 @@
 package Bean;
 
-
-import java.util.ArrayList;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.*;
 
 /**
- * Created by mm on 2017/6/10.
+ * Created by mm on 2017/6/11.
  */
- 
 @Entity
-@Table(name="JDOnSale")
-public class JDOnSale {
-	@Id
-    //首页获取的信息
-    private String movieId;//电影id
-    private String movieName;//电影名
-    private Double score;//电影评分
-
-    //详情页面获取的信息
+public class Jdonsale {
+    private String movieId;
+    private String movieName;
+    private Double score;
     private String director;
-    private ArrayList<String> actors;//主演
-    private String tag;//标签
-    private String introduction;//介绍
-    private ArrayList<String> times;//时间段
+    private String tag;
+    private String introduction;
+    private String times;
 
-    
+    @Id
+    @Column(name = "movieId")
     public String getMovieId() {
         return movieId;
     }
@@ -38,7 +25,8 @@ public class JDOnSale {
         this.movieId = movieId;
     }
 
-    
+    @Basic
+    @Column(name = "movieName")
     public String getMovieName() {
         return movieName;
     }
@@ -47,7 +35,8 @@ public class JDOnSale {
         this.movieName = movieName;
     }
 
-    
+    @Basic
+    @Column(name = "score")
     public Double getScore() {
         return score;
     }
@@ -56,7 +45,8 @@ public class JDOnSale {
         this.score = score;
     }
 
-    
+    @Basic
+    @Column(name = "director")
     public String getDirector() {
         return director;
     }
@@ -65,16 +55,8 @@ public class JDOnSale {
         this.director = director;
     }
 
-    
-    public ArrayList<String> getActors() {
-        return actors;
-    }
-
-    public void setActors(ArrayList<String> actors) {
-        this.actors = actors;
-    }
-
-    
+    @Basic
+    @Column(name = "tag")
     public String getTag() {
         return tag;
     }
@@ -83,7 +65,8 @@ public class JDOnSale {
         this.tag = tag;
     }
 
-    
+    @Basic
+    @Column(name = "introduction")
     public String getIntroduction() {
         return introduction;
     }
@@ -92,12 +75,44 @@ public class JDOnSale {
         this.introduction = introduction;
     }
 
-    
-    public ArrayList<String> getTimes() {
+    @Basic
+    @Column(name = "times")
+    public String getTimes() {
         return times;
     }
 
-    public void setTimes(ArrayList<String> times) {
+    public void setTimes(String times) {
         this.times = times;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Jdonsale jdonsale = (Jdonsale) o;
+
+        if (movieId != null ? !movieId.equals(jdonsale.movieId) : jdonsale.movieId != null) return false;
+        if (movieName != null ? !movieName.equals(jdonsale.movieName) : jdonsale.movieName != null) return false;
+        if (score != null ? !score.equals(jdonsale.score) : jdonsale.score != null) return false;
+        if (director != null ? !director.equals(jdonsale.director) : jdonsale.director != null) return false;
+        if (tag != null ? !tag.equals(jdonsale.tag) : jdonsale.tag != null) return false;
+        if (introduction != null ? !introduction.equals(jdonsale.introduction) : jdonsale.introduction != null)
+            return false;
+        if (times != null ? !times.equals(jdonsale.times) : jdonsale.times != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = movieId != null ? movieId.hashCode() : 0;
+        result = 31 * result + (movieName != null ? movieName.hashCode() : 0);
+        result = 31 * result + (score != null ? score.hashCode() : 0);
+        result = 31 * result + (director != null ? director.hashCode() : 0);
+        result = 31 * result + (tag != null ? tag.hashCode() : 0);
+        result = 31 * result + (introduction != null ? introduction.hashCode() : 0);
+        result = 31 * result + (times != null ? times.hashCode() : 0);
+        return result;
     }
 }
