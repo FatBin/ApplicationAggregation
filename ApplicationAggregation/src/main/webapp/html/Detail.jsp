@@ -17,14 +17,11 @@
 <body>
 
 <%
-    ArrayList<All> alls = (ArrayList<All>)request.getSession().getAttribute("all");
-    for (All a : alls) {
-        System.out.println(a.getActors());
-    }
+    ArrayList<All> alls = (ArrayList<All>) request.getSession().getAttribute("all");
 %>
 
 <div class="top_div">
-    <span onclick="location.href='HomePage.jsp'"><i class="glyphicon glyphicon-home"></i>京扒网站</span>
+    <span onclick="location.href='/html/HomePage.jsp'"><i class="glyphicon glyphicon-home"></i>京扒网站</span>
 </div>
 
 <div class="top_search_div">
@@ -58,10 +55,10 @@
     <div class="top_search_div">
 
         <div class="movie_name">
-            <span>新木乃伊</span>
-            <span class="grade">暂无评分</span>
+            <span><%=alls.get(0).getMoviename() %></span>
+            <span class="grade"><%=alls.get(0).getScore() %></span>
 
-            <span class="country_div">美国</span>
+            <span class="country_div"><%=alls.get(0).getCountry() %></span>
         </div>
 
         <hr style="border-color: #3b4967;">
@@ -74,17 +71,34 @@
 
             <div class="detail_div">
 
-                <div>导演：<span>艾里克斯·库兹曼</span></div>
+                <div>导演：<span><%=alls.get(0).getDirector() %></span></div>
 
-                <div>主演：<span>汤姆·克鲁斯、索菲亚·波多...</span></div>
+                <div>主演：
+                    <span>
+                    <%
+                        for (int i = 0; i < alls.get(0).getActor().getNames().size(); i++) {
+                    %>
 
-                <div>动作 | 奇幻 | 冒险 | 106分钟 | 2017-06-09上映</div>
+                        <%=alls.get(0).getActor().getNames().get(i) %>
+
+                    <%
+                        if (i != alls.get(0).getActor().getNames().size() - 1) {
+                    %>
+                        、
+                    <%
+                            }
+                        }
+                    %>
+
+                    </span>
+                </div>
+
+                <div><%=alls.get(0).getTag() %>
+                </div>
 
                 <div>剧情介绍：
                     <span>
-                        二千年前，埃及公主安玛奈特（索菲亚·波多拉饰）遭到了父亲的谋害而死，并被埋葬于沙漠深处的坟墓中。
-                        两千年后的现代，一支由尼克（汤姆·克鲁斯）为首的海豹突击队在中东的沙漠中寻获了公主的古老棺木，
-                        但却因此唤醒了可怕的远古诅咒。复活于现代的安玛奈特因曾遭到极……
+                        <%=alls.get(0).getIntroduction() %>
                     </span>
                 </div>
             </div>
@@ -115,18 +129,32 @@
                 </thead>
 
                 <tbody>
+                <%
+                    for (All a : alls) {
+                %>
                 <tr>
-                    <td style="line-height: 65px;">南京达美国际影城</td>
-                    <td style="line-height: 65px;">2017-06-12</td>
-                    <td style="padding-top: 10px;">
-                        <span style="font-size: 24px;">20:45</span>
-                        <div class="tip_div">约<span>22:31</span>散场</div>
+                    <td style="padding-top: 25px;">
+                        <span style="font-size: 16px;"><%=a.getTheater() %></span>
+                        <div class="tip_div" style="font-size: 12px;"><span><%=a.getAddress() %></span></div>
                     </td>
-                    <td style="line-height: 65px;">英语</td>
-                    <td style="line-height: 65px;">1号厅</td>
-                    <td class="price_td" style="line-height: 65px;">49.0</td>
-                    <td style="line-height: 65px;">淘票票</td>
+                    <td style="line-height: 65px;"><%=a.getDate() %>
+                    </td>
+                    <td style="padding-top: 10px;">
+                        <span style="font-size: 24px;"><%=a.getBegin() %></span>
+                        <div class="tip_div">约<span><%=a.getEnd() %></span>散场</div>
+                    </td>
+                    <td style="line-height: 65px;"><%=a.getLanguage() %>
+                    </td>
+                    <td style="line-height: 65px;"><%=a.getHall() %>
+                    </td>
+                    <td class="price_td" style="line-height: 65px;"><%=a.getPrice() %>
+                    </td>
+                    <td style="line-height: 65px;"><%=a.getSponser() %>
+                    </td>
                 </tr>
+                <%
+                    }
+                %>
                 </tbody>
             </table>
         </div>

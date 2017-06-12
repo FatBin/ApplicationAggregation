@@ -25,6 +25,6 @@ function search() {
         return;
     }
 
-    location.href = ("/search?movieName=" + movieName + "&theater=" + theater + "date=" + date);
+    location.href = ("/search?movieName=" + movieName + "&theater=" + theater + "&date=" + date);
 
 }

@@ -39,9 +39,14 @@ public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
 
+        request.setCharacterEncoding("utf-8");
+        response.setCharacterEncoding("utf-8");
+
         //use AllXMLService in MiddlewareService
         String movieName = request.getParameter("movieName");
+        movieName = new String(movieName.getBytes("ISO8859-1"),"UTF-8");
         String theater = request.getParameter("theater");
+        theater = new String(theater.getBytes("ISO8859-1"),"UTF-8");
         String date = request.getParameter("date");
 
         AllXMLService allXMLService = new AllXML();
