@@ -57,7 +57,7 @@ public class JDXML implements JDService {
             jd.setPrice(Double.valueOf(j.getPrice()));
             jd.setSponser(j.getSponsor());
             jd.setLanguage(j.getLanguage());
-            jd.setAddress(j.getLanguage());
+            jd.setAddress("-");
             arrayList.add(jd);
         }
 
