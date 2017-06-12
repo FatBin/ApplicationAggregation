@@ -465,7 +465,9 @@ public class NuoMiMovieGetter {
 					NuoMiTicket ticket=new NuoMiTicket();	
 					ticket.setTheaterName(theaterName);
 					ticket.setAddress(address);
-					ticket.setStartDate(rawDate);
+					ticket.setStartDate(moviedate+","+rawDate);
+					
+					System.out.println(ticket.getStartDate());
 					
 					
 					if(rawPrice.contains("<s>")){

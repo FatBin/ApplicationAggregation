@@ -45,8 +45,22 @@ public class NuoMiXML implements NuoMiService {
 		
 		
 		//////////////
-		String ticketdate=ticket.getTicketStartDate();
-		String beginTime=ticket.getTicketStartDate();
+		String ticketdate="";
+		String beginTime="";
+		
+		String[] reStrings=ticket.getTicketStartDate().split(",");
+		if(reStrings.length==2){
+			ticketdate=reStrings[0];
+			beginTime=reStrings[1];
+		}else if (reStrings.length==1) {
+			ticketdate=reStrings[0];
+			beginTime="-";
+		}else {
+			ticketdate="-";
+			beginTime="-";
+		}
+		
+		
 		//////////////
 		
 		

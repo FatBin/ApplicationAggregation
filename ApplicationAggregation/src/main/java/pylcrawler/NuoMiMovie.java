@@ -1,8 +1,9 @@
 package pylcrawler;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class NuoMiMovie {
+public class NuoMiMovie implements Serializable{
 	private String name;// 电影名
 	private ArrayList<String> stars=new ArrayList<String>(); // 主演列表
 	private String intro;     //简介

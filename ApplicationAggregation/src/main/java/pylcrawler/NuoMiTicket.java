@@ -1,4 +1,7 @@
 package pylcrawler;
+
+import java.io.Serializable;
+
 /**
  * 
  * @author peiyulin
@@ -6,7 +9,7 @@ package pylcrawler;
  */
 
 
-public class NuoMiTicket {
+public class NuoMiTicket implements Serializable{
 	private String theaterName;
 	private double price;
 	private String address;

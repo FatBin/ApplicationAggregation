@@ -22,7 +22,12 @@ public class AllXML implements AllXMLService{
         ArrayAll jd=XMLParse.converyToJavaBean(jdService.getData(movieName,theater,date),ArrayAll.class);
         result.addAll(jd.getAlls());
         
-//        result.addAll(getAllDataNuoMi(movieName, theater, date));
+        
+        
+//        if(getAllDataNuoMi(movieName, theater, date).size()!=0){
+////          result.addAll(getAllDataNuoMi(movieName, theater, date));
+//        }
+
         return result;
     }
     
@@ -36,19 +41,24 @@ public class AllXML implements AllXMLService{
     	NuoMiService service=new NuoMiXML();
     	
     	 ArrayAll jd=XMLParse.converyToJavaBean(service.getData(movieName,theater,date),ArrayAll.class);
-         result.addAll(jd.getAlls());
+    	 
+    	 
+    	 if(jd.getAlls()!=null){
+    		 result.addAll(jd.getAlls());
+    	 }
+         
          return result;
     	
     }
     
-    
-    public static void main(String[] args) {
-		AllXML xml=new AllXML();
-		ArrayList<All> list=xml.getAllDataNuoMi("新木乃伊", "新街口", "1");
-		
-		System.out.println(list.size());
-		for (All all : list) {
-			System.out.println(all.getPrice());
-		}
-	}
+//    
+//    public static void main(String[] args) {
+//		AllXML xml=new AllXML();
+//		ArrayList<All> list=xml.getAllDataNuoMi("新木乃伊", "南京", "2017-06-14");
+//		
+//		System.out.println(list.size());
+//		for (All all : list) {
+//			System.out.println(all.getPrice());
+//		}
+//	}
 }

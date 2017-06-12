@@ -23,8 +23,9 @@ public class TicketDaoImpl implements TicketDao {
 //        String hql="from Ticket j where j.movieName='"+movieName+"' and j.theaterName='"+theater+"' and j.ticketStartDate like '%"+date+"%'";
         
     	
-      String hql="from Ticket j where j.movieName like '%"+movieName+"%' and j.theaterName like '%"+theater+"%' and j.ticketStartDate like '%10:00%'";
+      String hql="from Ticket j where j.movieName like '%"+movieName+"%' and j.theaterName like '%"+theater+"%' and j.ticketStartDate like '%"+date+"%'";
 
+      System.out.println(hql);
     	List<Ticket> list=baseDao.findByHql(hql);
         return list;
     }
