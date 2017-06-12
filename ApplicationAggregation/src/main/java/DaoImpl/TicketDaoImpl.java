@@ -20,8 +20,12 @@ public class TicketDaoImpl implements TicketDao {
     
     @Override
     public List<Ticket> find(String movieName, String theater, String date) {
-        String hql="from Ticket j where j.movieName='"+movieName+"' and j.theaterName='"+theater+"' and j.ticketStartDate like '%"+date+"%'";
-        List<Ticket> list=baseDao.findByHql(hql);
+//        String hql="from Ticket j where j.movieName='"+movieName+"' and j.theaterName='"+theater+"' and j.ticketStartDate like '%"+date+"%'";
+        
+    	
+      String hql="from Ticket j where j.movieName like '%"+movieName+"%' and j.theaterName like '%"+theater+"%' and j.ticketStartDate like '%10:00%'";
+
+    	List<Ticket> list=baseDao.findByHql(hql);
         return list;
     }
 }

@@ -21,7 +21,7 @@ public class NuoMiMovieDaoImpl implements NuoMiMovieDao {
     
     @Override
     public Nuomimovie findByMovieName(String movieName) {
-        String hql="from Nuomimovie j where j.name='"+movieName+"'";
+        String hql="from Nuomimovie j where j.name like %'"+movieName+"%'";
         List<Nuomimovie> list=baseDao.findByHql(hql);
         if (list.size()>0){
             return list.get(0);

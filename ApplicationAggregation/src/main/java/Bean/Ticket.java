@@ -12,8 +12,11 @@ public class Ticket {
     private String theaterName;
     private Double price;
     private String address;
+    private String ticketStartDate;
 
-    @Id
+   
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
@@ -63,6 +66,16 @@ public class Ticket {
     public void setAddress(String address) {
         this.address = address;
     }
+    
+    @Basic
+    @Column(name = "ticketStartDate")
+    public String getTicketStartDate() {
+		return ticketStartDate;
+	}
+
+	public void setTicketStartDate(String ticketStartDate) {
+		this.ticketStartDate = ticketStartDate;
+	}
 
     @Override
     public boolean equals(Object o) {
