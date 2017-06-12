@@ -63,8 +63,8 @@ public class JDMovieTest {
 //        System.out.println(jdonsale.getActors());
 
 
-//        JDXML jdxml=new JDXML();
-//        System.out.println(XMLParse.convertToXml(XMLParse.converyToJavaBean(jdxml.getData("神农溪之恋漂洋过海来爱你","南京沃美影城","2017-06-13"), ArrayAll.class),"utf-8"));
+        JDXML jdxml=new JDXML();
+        System.out.println(XMLParse.convertToXml(XMLParse.converyToJavaBean(jdxml.getData("神农溪之恋漂洋过海来爱你","南京沃美影城","2017-06-13"), ArrayAll.class),"utf-8"));
 
     }
 
