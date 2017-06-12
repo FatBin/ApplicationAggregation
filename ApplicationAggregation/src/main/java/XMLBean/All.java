@@ -17,10 +17,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name="AllMovie")
 public class All {
 	@Id
-	private int AllMovieId;//主键，自增的、ID
 	private String moviename;//电影名
 	private double score;//评分
-	private ArrayList<String> actors;//主演
+	private Actor actor=new Actor();//主演
 	private String director;//导演
 	private String tag;//标签
 	private String introduction;//介绍
@@ -39,13 +38,6 @@ public class All {
 	private String address; // 电影院地址
 	
 	@XmlElement
-	public int getAllMovieId() {
-		return AllMovieId;
-	}
-	public void setAllMovieId(int allMovieId) {
-		AllMovieId = allMovieId;
-	}
-	@XmlElement
 	public String getMoviename() {
 		return moviename;
 	}
@@ -60,11 +52,11 @@ public class All {
 		this.score = score;
 	}
 	@XmlElement
-	public ArrayList<String> getActors() {
-		return actors;
+	public Actor getActor() {
+		return actor;
 	}
-	public void setActors(ArrayList<String> actors) {
-		this.actors = actors;
+	public void setActor(Actor actors) {
+		this.actor = actors;
 	}
 	@XmlElement
 	public String getDirector() {
